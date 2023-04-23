@@ -76,4 +76,8 @@ public class DispositivoService {
 			 throw new MyAPIException(HttpStatus.BAD_REQUEST, "Utentenon trovato!");
 		 }
 	 }
+	 
+	 public List<Dispositivo> getAllDispositiviByStato(StatoDispositivo stato) {
+		 return repo.getDispositiviFromStato(stato);
+	 }
 }

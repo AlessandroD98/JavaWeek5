@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import main.ex.spring.entity.Dispositivo;
+import main.ex.spring.entity.StatoDispositivo;
 import main.ex.spring.payload.DispositivoDto;
 import main.ex.spring.payload.DispositivoPut;
 import main.ex.spring.service.DispositivoService;
@@ -59,6 +60,12 @@ public class DispositiviController {
 	public ResponseEntity<String> associaDispositivoAUtente(@PathVariable Long idU, @PathVariable Long idD) {
 		String response = dispositivoService.addDispositivoToUtente(idU, idD);
 		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping("/stato/{stato}")
+	public ResponseEntity<List<Dispositivo>> getDispositiviByStato(@PathVariable StatoDispositivo stato) {
+		List<Dispositivo> response = dispositivoService.getAllDispositiviByStato(stato);
+				return ResponseEntity.ok(response);
 	}
 	
 }
