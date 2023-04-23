@@ -14,14 +14,6 @@ import main.ex.spring.payload.RegisterDto;
 import main.ex.spring.service.AuthService;
 
 
-
-
-
-
-
-
-
-
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

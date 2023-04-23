@@ -1,12 +1,20 @@
 package main.ex.spring.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import main.ex.spring.entity.User;
+import main.ex.spring.service.AuthService;
+import main.ex.spring.service.AuthServiceImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -14,9 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
+	@Autowired
+	private AuthServiceImpl authService;
+	
 	@GetMapping("/all")
-	public String allAccess() {
-		return "Public Content.";
+	public ResponseEntity<List<User>> allAccess() {
+		List<User> response = authService.getAllUsers();
+		return ResponseEntity.ok(response);
 	}
 	
 	@GetMapping("/auth")
